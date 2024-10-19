@@ -62,4 +62,4 @@ skipatmos=0
 
 Move to edit the files ```bash_ung.sh```, ```bash_dwn.sh```, ```bash_init.sh```, ```run_mpas_auto_init.qsub```, ```run_ungrib.qsub```, ```run_mpas_atmos.qsub``` accordingly and the source the set script ```setMPAS_env.sh``` before running the automation script ```bash_auto_run```
 
-Data token: https://rda.ucar.edu/accounts/profile/
+Data download token: https://rda.ucar.edu/accounts/profile/

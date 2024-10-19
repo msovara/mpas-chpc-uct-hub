@@ -1,6 +1,6 @@
 # MPAS
 
-Start the download process by editing dates in the forcing files: 
+Set up a ```tmux or screen``` session and then start the download process by editing dates in the forcing files: 
 ```cfsr_dwn_prslev_modified.py ```& ```cfsr_dwn_sfc_modified.py```. This assumes that you already have an account on the cfsr website. 
 ```
 passwd = ""

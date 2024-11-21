@@ -1,10 +1,10 @@
 # 1. Install Required Dependencies
 NetCDF requires:
 
-- zlib: For data compression.
-- HDF5: For hierarchical data storage (required for NetCDF-4).
-- Curl: For remote data access (optional but recommended).
-- C and Fortran compilers: For building the libraries (e.g., gcc, gfortran, or equivalent MPI compilers).
+- **zlib**: For data compression.
+- **HDF5**: For hierarchical data storage (required for NetCDF-4).
+- **Curl**: For remote data access (optional but recommended).
+- **C and Fortran compilers**: For building the libraries (e.g., gcc, gfortran, or equivalent MPI compilers).
 
 # 2. Download the Source Code
 Get the source code for ```NetCDF-C``` and optionally ```NetCDF-Fortran``` from the official website:

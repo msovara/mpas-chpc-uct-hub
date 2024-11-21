@@ -1,3 +1,81 @@
+# 1. Install Required Dependencies
+NetCDF requires:
+
+- zlib: For data compression.
+- HDF5: For hierarchical data storage (required for NetCDF-4).
+- Curl: For remote data access (optional but recommended).
+- C and Fortran compilers: For building the libraries (e.g., gcc, gfortran, or equivalent MPI compilers).
+
+# 2. Download the Source Code
+Get the source code for ```NetCDF-C``` and optionally ```NetCDF-Fortran``` from the official website:
+```
+wget https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.9.2.tar.gz
+wget https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v4.6.0.tar.gz
+```
+Extract the archives:
+```
+tar -xvzf v4.9.2.tar.gz
+tar -xvzf v4.6.0.tar.gz
+```
+# 3. Build and Install NetCDF-C
+Navigate to the extracted directory and configure the build system:
+```
+cd netcdf-c-4.9.2
+./configure --prefix=/path/to/install \
+             --enable-netcdf-4 \
+             --enable-dap \
+             --with-hdf5=/path/to/hdf5 \
+             --with-zlib=/path/to/zlib
+
+
+```
+
+## Build these from source or install using package manager. On LENGAU, build using Intel MPI
+```
+#!/bin/bash
+
+module load chpc/parallel_studio_xe/18.0.2/2018.2.046
+source /apps/compilers/intel/parallel_studio_xe_2018_update2/compilers_and_libraries/linux/mpi/bin64/mpivars.sh
+
+export MPASDIR=/home/apps/chpc/earthMPAS-A-8.2.2-impi-pnc-pio-tau
+export DIR=$MPASDIR/LIBRARIES
+export CC=icc
+export CXX=icc
+export FC=ifort
+export FCFLAGS="-m64 -I$DIR/netcdf/include  -I$DIR/grib2/include"
+export F77=ifort
+export FFLAGS=$FCFLAGS
+export CFLAGS=$FCFLAGS
+export PKG_CONFIG_PATH=$DIR/grib2/lib/pkgconfig:$DIR/netcdf/lib/pkgconfig:$DIR/pnetcdf/lib/pkgconfig
+export MPICC=/apps/compilers/intel/parallel_studio_xe_2018_update2/compilers_and_libraries/linux/mpi/intel64/bin/mpiicc
+export MPIF90=/apps/compilers/intel/parallel_studio_xe_2018_update2/compilers_and_libraries/linux/mpi/intel64/bin/mpiifort
+export MPIF77=/apps/compilers/intel/parallel_studio_xe_2018_update2/compilers_and_libraries/linux/mpi/intel64/bin/mpiifort
+export PATH=$DIR/netcdf/bin:$DIR/pnetcdf/bin:$DIR/grib2/bin:$PATH
+export LD_LIBRARY_PATH=$DIR/grib2/lib:/apps/compilers/intel/parallel_studio_xe_2018_update2/compilers_and_libraries_2018.2.199/linux/compiler/lib/intel64_lin:$DIR/netcdf/lib:$DIR/pnetcdf/lib:$LD_LIBRARY_PATH
+export NETCDF4=1
+export NETCDF=$DIR/netcdf
+export HDF5=$DIR/grib2
+export LDFLAGS="-L$DIR/grib2/lib"
+export CPPFLAGS=-I$DIR/grib2/include
+export JASPERLIB=$DIR/grib2/lib
+export JASPERINC=$DIR/grib2/include
+export WRFIO_NCD_LARGE_FILE_SUPPORT=1
+export PATH=$WRFDIR/WPS:$WRFDIR/WPS/util:$PATH
+export PATH=$WRFDIR/WRF/run:$PATH
+export NCARG_ROOT=$WRFDIR/ncl
+export PATH=$PATH:$NCARG_ROOT/bin
+export GADDIR=/apps/chpc/earth/grads-2.1.a3
+export PATH=$PATH:$GADDIR/bin
+export PATH=$PATH:$WRFDIR/ARWpost
+export PATH=$PATH:$WRFDIR/UPPV3.1.1/bin
+ulimit -s unlimited
+
+
+```
+
+
+
+
 # MPAS
 
 Set up a ```tmux or screen``` session and then start the download process by editing dates in the forcing files: 

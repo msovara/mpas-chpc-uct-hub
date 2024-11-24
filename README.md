@@ -1,4 +1,4 @@
-# 1. Install Required Dependencies
+# 1. Required Dependencies
 NetCDF requires:
 
 - **zlib**: For data compression.

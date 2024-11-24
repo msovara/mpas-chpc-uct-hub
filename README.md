@@ -7,6 +7,13 @@ NetCDF requires:
 - **C and Fortran compilers**: For building the libraries (e.g., gcc, gfortran, or equivalent MPI compilers).
 
 # 2. Download the Dependencies and Source Code
+The MPAS code is distributed directly from the GitHub repository where it is developed. While it's possible to navigate to https://github.com/MPAS-Dev/MPAS-Model and obtain the code by clicking on the "Releases" tab, it's much faster to clone the repository directly on the command-line. 
+```
+ssh dtn
+cd /home/msovara/lustre/SoftwareDownloads
+git clone https://github.com/MPAS-Dev/MPAS-Model.git
+mv MPAS_Model ../SoftwareBuilds
+```
 Get the source code for ```NetCDF-C``` and optionally ```NetCDF-Fortran``` from the official website:
 ```
 wget https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.9.2.tar.gz

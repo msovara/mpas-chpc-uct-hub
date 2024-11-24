@@ -6,7 +6,7 @@ NetCDF requires:
 - **Curl**: For remote data access (optional but recommended).
 - **C and Fortran compilers**: For building the libraries (e.g., gcc, gfortran, or equivalent MPI compilers).
 
-# 2. Download the Source Code
+# 2. Download the Dependencies and Source Code
 Get the source code for ```NetCDF-C``` and optionally ```NetCDF-Fortran``` from the official website:
 ```
 wget https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.9.2.tar.gz

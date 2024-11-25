@@ -11,13 +11,24 @@ The MPAS code is distributed directly from the GitHub repository where it is dev
 ```
 ssh dtn
 cd /home/msovara/lustre/SoftwareDownloads
+```
+```
+### Get MPAS source code
 git clone https://github.com/MPAS-Dev/MPAS-Model.git
 mv MPAS_Model ../SoftwareBuilds
 ```
+### Dependencies
 Get the source code for ```NetCDF-C``` and optionally ```NetCDF-Fortran``` from the official website:
 ```
 wget https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.9.2.tar.gz
 wget https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v4.6.0.tar.gz
+
+
+## Build MPAS version 8.2.2 with Tau Profiler wrappers:
+```
+cd MPAS-A-8.2.2-impi-pnc-tau
+```
+
 ```
 Extract the archives:
 ```

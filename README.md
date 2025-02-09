@@ -1,3 +1,8 @@
+### The approximate time it takes to run the install mpas build and compile script is 30 minutes so there is time to get a copy a coffee. Remember to log the output for debugging as follows:
+```bash
+time ./install_mpas-deps.sh > log.txt
+```
+
 # 1. Required Dependencies
 NetCDF requires:
 

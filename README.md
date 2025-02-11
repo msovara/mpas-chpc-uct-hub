@@ -1,6 +1,6 @@
 # Developer Notes
 
-## 1. Required Dependencies required for building MPAS version 8.2 (Order of Build): 
+## 1. Required Dependencies required for building MPAS version 8.2: 
 
 ### Basic Build Dependencies
 1. **Zlib**: A software library used for data compression (often needed early in builds to handle compressed data during the build process).

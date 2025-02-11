@@ -1,17 +1,18 @@
-### The approximate time it takes to run the install mpas build and compile script is 30 minutes so there is time to get a copy a coffee. Remember to log the output for debugging as follows:
-```bash
-time ./install_mpas-deps.sh > log.txt
-```
+# Developer Notes
 
-# 1. Required Dependencies
-NetCDF requires:
+## 1. Required Dependencies
+**MPAS version 8.2 requires:**
 
+- **TAU**: For data compression.
+- **parallel IO**: For data compression.
+- **mpich**: For data compression.
+- **gnu**: For data compression.
 - **zlib**: For data compression.
 - **HDF5**: For hierarchical data storage (required for NetCDF-4).
 - **Curl**: For remote data access (optional but recommended).
 - **C and Fortran compilers**: For building the libraries (e.g., gcc, gfortran, or equivalent MPI compilers).
 
-# 2. Download the Dependencies and Source Code
+## 2. Building dependencies and compiling MPAS v8.2 with TAU hooks
 The MPAS code is distributed directly from the GitHub repository where it is developed. While it's possible to navigate to https://github.com/MPAS-Dev/MPAS-Model and obtain the code by clicking on the "Releases" tab, it's much faster to clone the repository directly on the command-line. 
 ```
 ssh dtn

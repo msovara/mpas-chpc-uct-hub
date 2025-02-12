@@ -295,10 +295,8 @@ else
 fi
 
 echo "Full build completed successfully!"
-
-
 ```
-
+---
 
 Contact information: msovara@csir.co.za
 

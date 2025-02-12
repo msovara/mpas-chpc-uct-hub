@@ -302,4 +302,6 @@ echo "Full build completed successfully!"
 
 Contact information: msovara@csir.co.za
 
+## TAU and User Guide under construction...
+
 Data download token: https://rda.ucar.edu/accounts/profile/

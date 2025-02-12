@@ -2,7 +2,7 @@
 
 ## 1. Required Dependencies required for building MPAS version 8.2: 
 
-### Basic Build Dependencies
+### Build Basic Dependencies
 1. **Zlib**: A software library used for data compression (often needed early in builds to handle compressed data during the build process).
 2. **Curl**: A tool and library for transferring data with URLs, used for accessing remote resources over HTTP, FTP, and other protocols (optional but recommended for accessing remote data).
 

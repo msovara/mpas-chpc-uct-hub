@@ -75,6 +75,7 @@ conda deactivate 2>/dev/null  # Deactivate conda if active
 # Load GCC module
 module load chpc/compmech/gcc/12.1.0  # Load GCC 12.1.0
 module load chpc/git/2.41.0  # Load Git for cloning repositories
+module load tau/2.25.1-gnu  # Load TAU module
 
 # Set compiler environment
 export CC=$GCC_DIR/bin/gcc  # C compiler

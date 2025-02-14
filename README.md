@@ -298,6 +298,8 @@ echo "Full build completed successfully!"
 ```
 ---
 
+The entire build process should take about 26 minutes and 27.694 seconds. 
+
 Contact information: msovara@csir.co.za
 
 ## TAU and User Guide under development...

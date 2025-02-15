@@ -77,12 +77,36 @@ module load chpc/compmech/gcc/12.1.0  # Load GCC 12.1.0
 module load chpc/git/2.41.0  # Load Git for cloning repositories
 module load tau/2.25.1-gnu  # Load TAU module
 
+# Set TAU base directory
+export TAU_DIR=/apps/chpc/visualization/soft/tau-2.25.1-gnu-5.10
+
+# Set TAU Makefile and options
+export TAU_MAKEFILE=$TAU_DIR/x86_64/lib/Makefile.tau-mpi-pdt
+export TAU_OPTIONS="-optRevert"
+
+# Verify TAU environment
+echo "TAU_MAKEFILE: $TAU_MAKEFILE"
+echo "TAU_OPTIONS: $TAU_OPTIONS"
+
+# Set base compilers for MPICH to use
+export MPICH_CC=$GCC_DIR/bin/gcc
+export MPICH_CXX=$GCC_DIR/bin/g++
+export MPICH_FC=$GCC_DIR/bin/gfortran
+export MPICH_F77=$GCC_DIR/bin/gfortran
+
+# Set TAU compiler wrappers with MPICH
+export CC="$TAU_DIR/x86_64/bin/tau_cc.sh -cc=mpicc"     # C compiler
+export CXX="$TAU_DIR/x86_64/bin/tau_cxx.sh -cxx=mpicxx" # C++ compiler
+export FC="$TAU_DIR/x86_64/bin/tau_f90.sh -fc=mpif90"   # Fortran compiler
+export F77="$TAU_DIR/x86_64/bin/tau_f77.sh -fc=mpif77"  # Fortran 77 compiler
+export F90="$TAU_DIR/x86_64/bin/tau_f90.sh -fc=mpif90"  # Fortran 90 compiler
+
 # Set compiler environment
-export CC=$GCC_DIR/bin/gcc  # C compiler
-export CXX=$GCC_DIR/bin/g++  # C++ compiler
-export FC=$GCC_DIR/bin/gfortran  # Fortran compiler
-export F77=$GCC_DIR/bin/gfortran  # Fortran 77 compiler
-export F90=$GCC_DIR/bin/gfortran  # Fortran 90 compiler
+#export CC=$GCC_DIR/bin/gcc  
+#export CXX=$GCC_DIR/bin/g++  
+#export FC=$GCC_DIR/bin/gfortran  
+#export F77=$GCC_DIR/bin/gfortran  
+#export F90=$GCC_DIR/bin/gfortran  
 
 # Set paths (without duplicates)
 export PATH=$INSTALL_DIR/bin:$GCC_DIR/bin:$PATH  # Add installation and GCC paths to PATH
@@ -264,11 +288,11 @@ export PIO=$(spack location -i parallelio)
 export PATH=$PIO/bin:$NETCDF/bin:$PNETCDF/bin:$PATH
 export LD_LIBRARY_PATH=$PIO/lib:$NETCDF/lib:$PNETCDF/lib:$LD_LIBRARY_PATH
 
-# Add include paths with GCC-specific directories
-export CPPFLAGS="-I$INSTALL_DIR/include"
-export CFLAGS="-fPIC -O2"
-export FFLAGS="-fPIC -O2 -ffree-line-length-none -fconvert=big-endian -ffree-form -fdefault-real-8"
-export LIBS="-lnetcdff -lnetcdf -lpnetcdf -lhdf5_hl -lhdf5 -lcurl -lz"
+# Enhanced compiler flags for TAU
+export CPPFLAGS="-I$INSTALL_DIR/include -I$TAU_DIR/include"
+export CFLAGS="-fPIC -O2 -g"  # -g for debug symbols
+export FFLAGS="-fPIC -O2 -g -ffree-line-length-none -fconvert=big-endian -ffree-form -fdefault-real-8"
+export LIBS="-ltau -lnetcdff -lnetcdf -lpnetcdf -lhdf5_hl -lhdf5 -lcurl -lz"
 
 # Clean previous builds
 make clean CORE=atmosphere
@@ -286,16 +310,18 @@ make gfortran CORE=atmosphere \
 
 # Verify final build
 if [ -f atmosphere_model ]; then
-    echo "MPAS build successful!"
-    ldd atmosphere_model  # Verify linked libraries
+    echo "MPAS build successful with TAU instrumentation!"
+    echo "Run with:"
+    echo "mpirun -np <NPROCS> tau_exec ./atmosphere_model"
+    ldd atmosphere_model
     mkdir -p $INSTALL_DIR/bin
-    cp atmosphere_model $INSTALL_DIR/bin/  # Copy executable to installation directory
+    cp atmosphere_model $INSTALL_DIR/bin/
 else
     echo "MPAS build failed!"
     exit 1
 fi
 
-echo "Full build completed successfully!"
+echo "TAU-instrumented build completed successfully!"
 ```
 ---
 

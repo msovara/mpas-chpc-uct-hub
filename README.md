@@ -85,9 +85,8 @@ export LD_LIBRARY_PATH=/lib64:/lib
 
 # Load modules
 module purge
-if [ -n "$CONDA_DEFAULT_ENV" ]; then
-    conda deactivate
-fi
+source /apps/chpc/chem/anaconda3-2021.11/etc/profile.d/conda.sh # Source conda
+conda deactivate 2>/dev/null
 module load chpc/compmech/gcc/12.1.0
 module load chpc/git/2.41.0
 

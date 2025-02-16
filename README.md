@@ -85,7 +85,9 @@ export LD_LIBRARY_PATH=/lib64:/lib
 
 # Load modules
 module purge
-conda deactivate 2>/dev/null
+if [ -n "$CONDA_DEFAULT_ENV" ]; then
+    conda deactivate
+fi
 module load chpc/compmech/gcc/12.1.0
 module load chpc/git/2.41.0
 
@@ -155,13 +157,13 @@ if [ ! -f tau.tgz ]; then
     tar xzf tau.tgz
 fi
 cd tau-2.34
+make distclean || true
 ./configure -prefix=$INSTALL_DIR/tau \
     -mpi \
     -mpiinc=$INSTALL_DIR/include \
     -mpilib=$INSTALL_DIR/lib \
     -cc=gcc \
-    -cxx=g++ \
-    -fortran=optional \
+    -fortran=gfortran \
     -iowrapper
 
 # Set up TAU environment

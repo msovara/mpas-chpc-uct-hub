@@ -148,6 +148,7 @@ make -j8 && make install
 # Update PATH and LD_LIBRARY_PATH after MPICH installation
 export PATH=$INSTALL_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$INSTALL_DIR/lib:$LD_LIBRARY_PATH
+INSTALL_DIR=/home/msovara/lustre/SoftwareBuilds/mpas-gcc-build/install
 
 # Build TAU from source
 cd $SOURCE_DIR

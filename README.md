@@ -157,7 +157,7 @@ if [ ! -f tau.tgz ]; then
     tar xzf tau.tgz
 fi
 cd tau-2.34
-make distclean || true
+make clean
 ./configure -prefix=$INSTALL_DIR/tau \
     -mpi \
     -mpiinc=$INSTALL_DIR/include \
@@ -168,7 +168,7 @@ make distclean || true
 
 # Set up TAU environment
 export TAU_DIR=$INSTALL_DIR/tau
-export TAU_MAKEFILE=$TAU_DIR/x86_64/lib/Makefile.tau-mpi-pdt
+export TAU_MAKEFILE=$TAU_DIR/x86_64/lib/Makefile.tau-mpi
 export TAU_OPTIONS="-optRevert"
 export PATH=$TAU_DIR/x86_64/bin:$PATH
 export LD_LIBRARY_PATH=$TAU_DIR/x86_64/lib:$LD_LIBRARY_PATH

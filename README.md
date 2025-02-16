@@ -61,13 +61,17 @@ export GCC_DIR="/apps/chpc/compmech/spack/opt/spack/linux-centos7-haswell/gcc-9.
 
 # Ask user if they want to clean previous builds
 read -p "Do you want to clean previous builds? (y/n) " answer
-case ${answer:0:1} in
+case "$answer" in
     y|Y )
-        clean_builds
-    ;;
-    * )
+        echo "Cleaning previous builds..."
+        # Add your cleanup command here
+        ;;
+    n|N )
         echo "Skipping clean..."
-    ;;
+        ;;
+    * )
+        echo "Invalid input. Please enter y or n."
+        ;;
 esac
 
 # Create directories
@@ -150,15 +154,15 @@ if [ ! -f tau.tgz ]; then
     wget http://tau.uoregon.edu/tau.tgz
     tar xzf tau.tgz
 fi
-cd tau-2.33
+cd tau-2.34
 ./configure -prefix=$INSTALL_DIR/tau \
     -mpi \
     -mpiinc=$INSTALL_DIR/include \
     -mpilib=$INSTALL_DIR/lib \
-    -c++ \
+    -cc=gcc \
+    -cxx=g++ \
     -fortran=optional \
     -iowrapper
-make -j8 install
 
 # Set up TAU environment
 export TAU_DIR=$INSTALL_DIR/tau

@@ -165,6 +165,7 @@ make clean
     -cc=gcc \
     -fortran=gfortran \
     -iowrapper
+make -j8 && make install
 
 # Set up TAU environment
 export TAU_DIR=$INSTALL_DIR/tau
